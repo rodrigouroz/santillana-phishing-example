@@ -4,8 +4,8 @@ import { useState } from 'react';
 export default function Home() {
     const [username, setUsername] = useState('');
 
-    const handleSubmit = (event) => {
-        fetch('/api/register', {
+    const handleSubmit = async(event) => {
+        await fetch('/api/register', {
             method: 'POST',
             body: JSON.stringify({
                 username,
@@ -16,8 +16,6 @@ export default function Home() {
               Accept: 'application/json',
             }),
         });
-
-        event.preventDefault();
     };
 
     return (

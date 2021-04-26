@@ -113,7 +113,7 @@ export default function Home() {
                                                 &#191;Qu&#233; es esto?
                                             </a>
                                             <form
-                                                action='https://www.santillanaconnect.com/Account/Login?wa=wsignin1.0&wtrealm=http%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fcompartir%2F&wreply=https%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fsso%2Floginconnect'
+                                                action='https://lms30.santillanacompartir.com/student-new'
                                                 method='post'
                                                 name='loginForm'
                                                 onSubmit={handleSubmit}

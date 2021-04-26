@@ -6,10 +6,13 @@ async function recordEntry(date, username) {
   try {
     const scopes = ["https://www.googleapis.com/auth/spreadsheets"];
 
+    let buff = Buffer.from(process.env.GOOGLE_SHEETS_PRIVATE_KEY, 'base64');
+    let key = buff.toString('ascii');
+
     const googleAuth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY.replace(/\\n/g, '\n')
+        private_key: key
       },
       scopes
     });

@@ -39,7 +39,7 @@ async function recordEntry(date, username) {
   }
 }
 
-export default (req, res) => {
-  recordEntry(moment().format('DD-MM-YY, h:mm A'), req.body.username);
+export default async (req, res) => {
+  await recordEntry(moment().format('DD-MM-YY, h:mm A'), req.body.username);
   res.status(200).end();
 }

@@ -1,0 +1,47 @@
+.primary,
+a {
+    color: #00a1e4 !important;
+}
+.primaryBackground {
+    background-color: #00a1e4 !important;
+}
+.primaryBorder {
+    border: 1px solid #00a1e4 !important;
+    -webkit-box-shadow: none !important;
+}
+.primaryBorderFocus:focus {
+    border: 1px solid #00a1e4 !important;
+    -webkit-box-shadow: none !important;
+}
+.primaryBorderIcon {
+    border-color: #00a1e4 !important;
+}
+#bgimg {
+    background: url(https://caprodevelop.blob.core.windows.net/uploads/pro/mainimage/1e895c2b-318a-4e6d-929d-309d239c911e.jpg)
+        no-repeat;
+}
+
+.validate {
+    color: #e83c23 !important;
+}
+.field-validation-error {
+    color: #e83c23 !important;
+}
+input.input-validation-error {
+    border: 1px solid #e83c23 !important;
+    -webkit-box-shadow: none !important;
+}
+input.input-validation-error + div {
+    border-color: #e83c23 !important;
+}
+
+.loginInput:focus + div {
+    border-color: #00a1e4 !important;
+    border-right: 0;
+}
+
+.separator {
+    display: inline;
+    padding-left: 5px;
+    padding-right: 5px;
+}

